@@ -6,5 +6,11 @@ I own it. Download at ./beta/may-not-work/Dinoscriptz.js
 
 ----------------------------------------------------------
 
+# Cookscriptz
+I own it. Download at ./beta/may-not-work/Cookscriptz.js
+
+It's a cookie clicker mod menu.
+
+---------------------------------------------------------
 
 

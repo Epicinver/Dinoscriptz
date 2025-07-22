@@ -15,3 +15,9 @@ Learn what a bookmarklet is [here](https://en.wikipedia.org/wiki/Bookmarklet)
 # FAQ
 Q: Why is this so bad? A: ITS IN DEVELOPMENT
 Q: Where can i view who made these scripts? A: Click [Credits.md.](https://github.com/Epicinver/Dinoscriptz/blob/main/credits.md)
+
+
+# How do i submit scripts?
+
+Join the discord and enter !submitcheat [game] [cheatname] [github_user] [script] whenever the bot is online (submitter bot).
+Or you can make a Pull Request to be featured in credits.md.

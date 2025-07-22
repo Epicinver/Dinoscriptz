@@ -19,5 +19,5 @@ Q: Where can i view who made these scripts? A: Click [Credits.md.](https://githu
 
 # How do i submit scripts?
 
-Join the discord and enter !submitcheat [game] [cheatname] [github_user] [script] whenever the bot is online (submitter bot).
+Join the [discord](https://discord.gg/W5U87rrZ) and enter !submitcheat [game] [cheatname] [github_user] [script] whenever the bot is online (submitter bot).
 Or you can make a Pull Request to be featured in credits.md.

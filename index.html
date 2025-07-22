@@ -1,219 +1,295 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dinoscriptz - Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dinoscriptz Landing Hub</title>
   <style>
     :root {
-      --primary: #1a73e8;
-      --bg: #0f0f0f;
-      --fg: #f1f1f1;
-      --accent: #333;
+      --accent: #1a73e8;
+      --bg-light: #f9f9f9;
+      --bg-dark: #121212;
+      --text-light: #222;
+      --text-dark: #eee;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      animation: fadeIn 1s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-light);
+      color: var(--text-light);
+      margin: 0; padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      transition: background 0.3s, color 0.3s;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     header {
-      background: linear-gradient(90deg, var(--primary), #4285f4);
-      padding: 1.5rem;
-      text-align: center;
-      font-size: 2.5rem;
-      font-weight: bold;
+      background: var(--accent);
       color: white;
-      letter-spacing: 1px;
-      box-shadow: 0 2px 8px #0006;
+      font-size: 2rem;
+      font-weight: 700;
+      padding: 1rem 2rem;
+      user-select: none;
     }
-
     nav {
       display: flex;
-      justify-content: center;
-      background: #181818;
-      border-bottom: 1px solid var(--accent);
+      background: #eee;
+      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
     }
-
     nav button {
-      background: none;
+      flex: 1;
+      padding: 1rem;
       border: none;
-      color: #ccc;
-      padding: 1rem 2rem;
+      background: transparent;
+      font-weight: 600;
       cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.25s, color 0.25s;
+      font-size: 1.1rem;
+      color: var(--accent);
+      transition: background 0.3s, color 0.3s;
+      border-bottom: 3px solid transparent;
+      user-select: none;
     }
-
-    nav button:hover,
+    nav button:hover {
+      background: #d7e3fc;
+    }
     nav button.active {
-      background: #222;
-      color: #fff;
+      background: var(--accent);
+      color: white;
+      border-bottom: 3px solid #0b57d0;
     }
-
-    section {
+    main {
+      flex: 1;
+      padding: 1.5rem 2rem;
+      overflow-y: auto;
+      background: white;
+      box-shadow: inset 0 0 20px rgb(0 0 0 / 0.05);
+      animation: fadeIn 0.3s ease forwards;
+    }
+    .hidden {
       display: none;
-      padding: 2rem;
-      max-width: 1000px;
-      margin: auto;
-      animation: fadeIn 0.5s ease;
     }
-
-    section.active {
-      display: block;
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
     }
-
-    .script-list {
-      display: grid;
-      gap: 1rem;
-      margin-top: 1rem;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.5rem;
     }
-
-    .script-list li {
-      background: #1e1e1e;
+    li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #333;
+      word-break: break-all;
+    }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    button.installBtn {
+      background: var(--accent);
+      border: none;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 1rem;
+      transition: background 0.3s;
+    }
+    button.installBtn:hover {
+      background: #0b57d0;
+    }
+    pre.instructions {
+      background: #f0f0f0;
       padding: 1rem;
       border-radius: 8px;
-      list-style: none;
-      border: 1px solid var(--accent);
-      transition: transform 0.2s ease, background 0.2s ease;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      user-select: all;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-width: 600px;
     }
-
-    .script-list li:hover {
-      background: #292929;
-      transform: scale(1.02);
+    /* Dark mode support */
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
     }
-
-    .script-list a {
-      color: #4da6ff;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .instructions {
-      background: #1c1c1c;
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--accent);
-      line-height: 1.6;
-      box-shadow: 0 0 8px #0004;
-    }
-
-    .button {
-      display: inline-block;
-      margin-top: 1.5rem;
-      background: var(--primary);
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.2s ease;
-    }
-
-    .button:hover {
-      background: #1663c6;
-    }
-
-    code, kbd {
+    body.dark nav {
       background: #222;
-      color: #8ab4f8;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-family: monospace;
+      box-shadow: none;
     }
-
-    @media (max-width: 600px) {
-      nav button {
-        padding: 0.8rem 1rem;
-        font-size: 0.9rem;
-      }
-
-      .script-list {
-        grid-template-columns: 1fr;
-      }
+    body.dark nav button {
+      color: var(--text-dark);
+    }
+    body.dark nav button:hover {
+      background: #333;
+    }
+    body.dark nav button.active {
+      background: #1a73e8;
+      color: white;
+      border-bottom: 3px solid #0b57d0;
+    }
+    body.dark main {
+      background: #181818;
+      box-shadow: none;
+    }
+    /* Loader */
+    .loader {
+      border: 4px solid #eee;
+      border-top: 4px solid var(--accent);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      animation: spin 1s linear infinite;
+      margin: 2rem auto;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg);}
+      100% { transform: rotate(360deg);}
     }
   </style>
 </head>
 <body>
-  <header>Dinoscriptz</header>
 
-  <nav>
-    <button class="active" data-tab="scripts">Script(z)</button>
-    <button data-tab="install">Install Our Script(z)</button>
-    <button onclick="location.href='https://github.com/Epicinver/Dinoscriptz'">GitHub</button>
-    <button onclick="location.href='https://github.com/Epicinver/Dinoscriptz/blob/main/credits.md'">Credit(z)</button>
-  </nav>
+<header>Dinoscriptz Landing Hub</header>
+<nav>
+  <button id="tabScripts" class="active" aria-controls="scriptsTab" aria-selected="true" role="tab">Script(z)</button>
+  <button id="tabCredits" aria-controls="creditsTab" aria-selected="false" role="tab">Credit(z)</button>
+  <button id="tabGitHub" aria-controls="githubTab" aria-selected="false" role="tab">GitHub</button>
+  <button id="tabInstall" aria-controls="installTab" aria-selected="false" role="tab">Install Our Script(z)</button>
+</nav>
 
-  <section id="scripts" class="active">
-    <h2>📜 Available Script(z)</h2>
-    <ul class="script-list" id="scriptList">Loading scripts...</ul>
-  </section>
-
-  <section id="install">
-    <h2>🚀 How to Install</h2>
-    <div class="instructions">
-      <p>1. Open the <strong>Dinoscriptz</strong> GitHub repository.</p>
-      <p>2. Choose a script ending in <code>.js</code>.</p>
-      <p>3. Open the <code>chrome://dino</code> game in Chrome.</p>
-      <p>4. Press <kbd>F12</kbd> or <kbd>Ctrl+Shift+I</kbd> to open Developer Tools and go to the <strong>Console</strong> tab.</p>
-      <p>5. Paste the script and hit <kbd>Enter</kbd>.</p>
-      <a class="button" href="https://github.com/Epicinver/Dinoscriptz" target="_blank">🔗 Open GitHub Repo</a>
+<main>
+  <section id="scriptsTab" role="tabpanel" aria-labelledby="tabScripts">
+    <h2>Available JavaScript Files</h2>
+    <div id="scriptsContent">
+      <div class="loader" aria-label="Loading scripts"></div>
     </div>
   </section>
 
-  <script>
-    // Handle tab switching
-    document.querySelectorAll('nav button[data-tab]').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-        button.classList.add('active');
-        document.getElementById(button.dataset.tab).classList.add('active');
+  <section id="creditsTab" role="tabpanel" aria-labelledby="tabCredits" class="hidden">
+    <h2>Credits</h2>
+    <p>Redirecting to Credits page...</p>
+  </section>
+
+  <section id="githubTab" role="tabpanel" aria-labelledby="tabGitHub" class="hidden">
+    <h2>GitHub Repository</h2>
+    <p>Redirecting to GitHub repository...</p>
+  </section>
+
+  <section id="installTab" role="tabpanel" aria-labelledby="tabInstall" class="hidden">
+    <h2>Install Our Script(z)</h2>
+    <button class="installBtn" id="installBtn">Open GitHub Repository</button>
+    <h3>Instructions</h3>
+    <pre class="instructions" aria-label="Installation instructions">
+1. Visit the GitHub repository.
+2. Find the JavaScript files (Script(z)) you want.
+3. Copy the contents or use the bookmarklets provided.
+4. Open chrome://dino in a Chromium-based browser.
+5. Open Developer Console (F12) and paste or inject the scripts.
+6. Enjoy your cheats and have fun!
+    </pre>
+  </section>
+</main>
+
+<script>
+  // Tab switching
+  const tabs = document.querySelectorAll('nav button');
+  const sections = document.querySelectorAll('main > section');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-selected', 'false');
       });
-    });
+      sections.forEach(s => s.classList.add('hidden'));
 
-    // Fetch scripts from GitHub API
-    async function fetchScripts() {
-      const list = document.getElementById('scriptList');
-      try {
-        const res = await fetch('https://api.github.com/repos/Epicinver/Dinoscriptz/contents');
-        const files = await res.json();
-        const jsFiles = files.filter(file => file.name.endsWith('.js'));
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected', 'true');
+      document.getElementById(tab.getAttribute('aria-controls')).classList.remove('hidden');
 
-        list.innerHTML = '';
-
-        if (jsFiles.length === 0) {
-          list.innerHTML = '<li>No JavaScript files found in the repository.</li>';
-          return;
-        }
-
-        jsFiles.forEach(file => {
-          const li = document.createElement('li');
-          li.innerHTML = `
-            <strong>${file.name}</strong><br>
-            <a href="${file.html_url}" target="_blank">View on GitHub</a>
-          `;
-          list.appendChild(li);
-        });
-      } catch (error) {
-        list.innerHTML = '<li>❌ Failed to fetch scripts. Please check your connection or try again later.</li>';
+      if(tab.id === 'tabCredits') {
+        window.open('https://github.com/Epicinver/Dinoscriptz/blob/main/credits.md', '_blank');
+      } else if(tab.id === 'tabGitHub') {
+        window.open('https://github.com/Epicinver/Dinoscriptz', '_blank');
       }
-    }
+    });
+  });
 
-    fetchScripts();
-  </script>
+  // Open GitHub link from Install tab button
+  document.getElementById('installBtn').addEventListener('click', () => {
+    window.open('https://github.com/Epicinver/Dinoscriptz', '_blank');
+  });
+
+  // Recursive fetch all .js files anywhere in repo
+  async function fetchAllJSFiles(path = '') {
+    const apiBase = 'https://api.github.com/repos/Epicinver/Dinoscriptz/contents/';
+    const fullPath = apiBase + path;
+    let jsFiles = [];
+
+    try {
+      const response = await fetch(fullPath);
+      if (!response.ok) throw new Error('Failed to fetch: ' + response.status);
+      const data = await response.json();
+
+      for (const item of data) {
+        if (item.type === 'dir') {
+          // Recurse into directory
+          const nestedFiles = await fetchAllJSFiles(item.path);
+          jsFiles = jsFiles.concat(nestedFiles);
+        } else if (item.type === 'file' && item.name.endsWith('.js')) {
+          jsFiles.push({
+            name: item.name,
+            path: item.path,
+            url: item.html_url
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching files:', error);
+      throw error;
+    }
+    return jsFiles;
+  }
+
+  // Show the scripts list
+  async function showScripts() {
+    const container = document.getElementById('scriptsContent');
+    try {
+      const files = await fetchAllJSFiles();
+      if(files.length === 0) {
+        container.innerHTML = '<p>No JavaScript files found in the repository.</p>';
+        return;
+      }
+      // Sort files alphabetically
+      files.sort((a,b) => a.name.localeCompare(b.name));
+
+      const ul = document.createElement('ul');
+      files.forEach(f => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = f.url;
+        a.textContent = f.path;
+        a.target = '_blank';
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+      container.innerHTML = '';
+      container.appendChild(ul);
+    } catch(e) {
+      container.innerHTML = '<p>Failed to load scripts. Check console for errors.</p>';
+    }
+  }
+
+  // Run on page load
+  window.onload = showScripts;
+</script>
+
 </body>
 </html>

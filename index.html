@@ -1,294 +1,225 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dinoscriptz Landing Hub</title>
-  <style>
-    :root {
-      --accent: #1a73e8;
-      --bg-light: #f9f9f9;
-      --bg-dark: #121212;
-      --text-light: #222;
-      --text-dark: #eee;
-    }
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: var(--bg-light);
-      color: var(--text-light);
-      margin: 0; padding: 0;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      transition: background 0.3s, color 0.3s;
-    }
-    header {
-      background: var(--accent);
-      color: white;
-      font-size: 2rem;
-      font-weight: 700;
-      padding: 1rem 2rem;
-      user-select: none;
-    }
-    nav {
-      display: flex;
-      background: #eee;
-      box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
-    }
-    nav button {
-      flex: 1;
-      padding: 1rem;
-      border: none;
-      background: transparent;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 1.1rem;
-      color: var(--accent);
-      transition: background 0.3s, color 0.3s;
-      border-bottom: 3px solid transparent;
-      user-select: none;
-    }
-    nav button:hover {
-      background: #d7e3fc;
-    }
-    nav button.active {
-      background: var(--accent);
-      color: white;
-      border-bottom: 3px solid #0b57d0;
-    }
-    main {
-      flex: 1;
-      padding: 1.5rem 2rem;
-      overflow-y: auto;
-      background: white;
-      box-shadow: inset 0 0 20px rgb(0 0 0 / 0.05);
-      animation: fadeIn 0.3s ease forwards;
-    }
-    .hidden {
-      display: none;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-    ul {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 0.5rem;
-    }
-    li {
-      margin-bottom: 0.5rem;
-      font-size: 1rem;
-      color: #333;
-      word-break: break-all;
-    }
-    a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    button.installBtn {
-      background: var(--accent);
-      border: none;
-      color: white;
-      padding: 0.75rem 1.5rem;
-      font-size: 1.1rem;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-bottom: 1rem;
-      transition: background 0.3s;
-    }
-    button.installBtn:hover {
-      background: #0b57d0;
-    }
-    pre.instructions {
-      background: #f0f0f0;
-      padding: 1rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      overflow-x: auto;
-      user-select: all;
-      white-space: pre-wrap;
-      word-break: break-word;
-      max-width: 600px;
-    }
-    /* Dark mode support */
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-    body.dark nav {
-      background: #222;
-      box-shadow: none;
-    }
-    body.dark nav button {
-      color: var(--text-dark);
-    }
-    body.dark nav button:hover {
-      background: #333;
-    }
-    body.dark nav button.active {
-      background: #1a73e8;
-      color: white;
-      border-bottom: 3px solid #0b57d0;
-    }
-    body.dark main {
-      background: #181818;
-      box-shadow: none;
-    }
-    /* Loader */
-    .loader {
-      border: 4px solid #eee;
-      border-top: 4px solid var(--accent);
-      border-radius: 50%;
-      width: 36px;
-      height: 36px;
-      animation: spin 1s linear infinite;
-      margin: 2rem auto;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg);}
-      100% { transform: rotate(360deg);}
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dinoscriptz Hub</title>
+<style>
+  /* Basic reset */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #121212;
+    color: #eee;
+  }
+  header {
+    padding: 1rem;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(90deg, #1a73e8, #4285f4);
+    color: white;
+  }
+  nav {
+    display: flex;
+    background: #222;
+  }
+  nav button {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #ccc;
+    padding: 1rem 0;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  nav button:hover {
+    background: #1a73e8;
+    color: white;
+  }
+  nav button.active {
+    background: #1a73e8;
+    color: white;
+  }
+  main {
+    padding: 1rem;
+    min-height: 300px;
+    max-width: 900px;
+    margin: 0 auto;
+    background: #1e1e1e;
+    border-radius: 8px;
+    box-shadow: 0 0 12px #0008;
+  }
+  a {
+    color: #1a73e8;
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  ul.file-list {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul.file-list li {
+    margin: 0.3rem 0;
+  }
+  button.install-btn {
+    background: #1a73e8;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+  }
+  button.install-btn:hover {
+    background: #4285f4;
+  }
+  /* Loading spinner */
+  .spinner {
+    margin: 2rem auto;
+    border: 6px solid #333;
+    border-top: 6px solid #1a73e8;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+  }
+  /* Fade in content */
+  .content-fade {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+  }
+  @keyframes fadeIn {
+    to {opacity: 1;}
+  }
+</style>
 </head>
 <body>
 
-<header>Dinoscriptz Landing Hub</header>
-<nav>
-  <button id="tabScripts" class="active" aria-controls="scriptsTab" aria-selected="true" role="tab">Script(z)</button>
-  <button id="tabCredits" aria-controls="creditsTab" aria-selected="false" role="tab">Credit(z)</button>
-  <button id="tabGitHub" aria-controls="githubTab" aria-selected="false" role="tab">GitHub</button>
-  <button id="tabInstall" aria-controls="installTab" aria-selected="false" role="tab">Install Our Script(z)</button>
+<header>Dinoscriptz Hub</header>
+
+<nav aria-label="Primary">
+  <button id="tabScripts" class="active" aria-controls="contentScripts" role="tab" aria-selected="true">Script(z)</button>
+  <button id="tabCredits" aria-controls="contentCredits" role="tab" aria-selected="false">Credit(z)</button>
+  <button id="tabGitHub" aria-controls="contentGitHub" role="tab" aria-selected="false">GitHub</button>
+  <button id="tabInstall" aria-controls="contentInstall" role="tab" aria-selected="false">Install Our Script(z)</button>
 </nav>
 
 <main>
-  <section id="scriptsTab" role="tabpanel" aria-labelledby="tabScripts">
-    <h2>Available JavaScript Files</h2>
-    <div id="scriptsContent">
-      <div class="loader" aria-label="Loading scripts"></div>
+  <section id="contentScripts" role="tabpanel" aria-labelledby="tabScripts">
+    <div id="scriptsContainer">
+      <div class="spinner" aria-label="Loading scripts"></div>
     </div>
   </section>
 
-  <section id="creditsTab" role="tabpanel" aria-labelledby="tabCredits" class="hidden">
-    <h2>Credits</h2>
-    <p>Redirecting to Credits page...</p>
+  <section id="contentCredits" role="tabpanel" aria-labelledby="tabCredits" hidden>
+    <p>
+      Credits can be found <a href="https://github.com/Epicinver/Dinoscriptz/blob/main/credits.md" target="_blank" rel="noopener noreferrer">here</a>.
+    </p>
   </section>
 
-  <section id="githubTab" role="tabpanel" aria-labelledby="tabGitHub" class="hidden">
-    <h2>GitHub Repository</h2>
-    <p>Redirecting to GitHub repository...</p>
+  <section id="contentGitHub" role="tabpanel" aria-labelledby="tabGitHub" hidden>
+    <p>
+      Visit our GitHub repository: <a href="https://github.com/Epicinver/Dinoscriptz" target="_blank" rel="noopener noreferrer">github.com/Epicinver/Dinoscriptz</a>
+    </p>
   </section>
 
-  <section id="installTab" role="tabpanel" aria-labelledby="tabInstall" class="hidden">
-    <h2>Install Our Script(z)</h2>
-    <button class="installBtn" id="installBtn">Open GitHub Repository</button>
-    <h3>Instructions</h3>
-    <pre class="instructions" aria-label="Installation instructions">
-1. Visit the GitHub repository.
-2. Find the JavaScript files (Script(z)) you want.
-3. Copy the contents or use the bookmarklets provided.
-4. Open chrome://dino in a Chromium-based browser.
-5. Open Developer Console (F12) and paste or inject the scripts.
-6. Enjoy your cheats and have fun!
-    </pre>
+  <section id="contentInstall" role="tabpanel" aria-labelledby="tabInstall" hidden>
+    <p>Click the button below to visit the GitHub repository and follow the instructions to inject our scripts:</p>
+    <button class="install-btn" onclick="window.open('https://github.com/Epicinver/Dinoscriptz', '_blank', 'noopener')">Go to GitHub Repo</button>
   </section>
 </main>
 
 <script>
-  // Tab switching
+  // Tab handling
   const tabs = document.querySelectorAll('nav button');
-  const sections = document.querySelectorAll('main > section');
+  const sections = document.querySelectorAll('main section');
+
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       tabs.forEach(t => {
         t.classList.remove('active');
         t.setAttribute('aria-selected', 'false');
       });
-      sections.forEach(s => s.classList.add('hidden'));
-
       tab.classList.add('active');
       tab.setAttribute('aria-selected', 'true');
-      document.getElementById(tab.getAttribute('aria-controls')).classList.remove('hidden');
 
-      if(tab.id === 'tabCredits') {
-        window.open('https://github.com/Epicinver/Dinoscriptz/blob/main/credits.md', '_blank');
-      } else if(tab.id === 'tabGitHub') {
-        window.open('https://github.com/Epicinver/Dinoscriptz', '_blank');
-      }
+      sections.forEach(section => {
+        if (section.id === 'content' + tab.id.replace('tab', '')) {
+          section.hidden = false;
+          section.classList.add('content-fade');
+        } else {
+          section.hidden = true;
+          section.classList.remove('content-fade');
+        }
+      });
     });
   });
 
-  // Open GitHub link from Install tab button
-  document.getElementById('installBtn').addEventListener('click', () => {
-    window.open('https://github.com/Epicinver/Dinoscriptz', '_blank');
-  });
+  // GitHub repo info
+  const owner = 'Epicinver';
+  const repo = 'Dinoscriptz';
 
-  // Recursive fetch all .js files anywhere in repo
-  async function fetchAllJSFiles(path = '') {
-    const apiBase = 'https://api.github.com/repos/Epicinver/Dinoscriptz/contents/';
-    const fullPath = apiBase + path;
-    let jsFiles = [];
+  // Recursive fetch all files from the repo
+  async function fetchAllFiles(path = '') {
+    const url = `https://api.github.com/repos/${owner}/${repo}/contents/${path}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+    const data = await res.json();
 
-    try {
-      const response = await fetch(fullPath);
-      if (!response.ok) throw new Error('Failed to fetch: ' + response.status);
-      const data = await response.json();
-
-      for (const item of data) {
-        if (item.type === 'dir') {
-          // Recurse into directory
-          const nestedFiles = await fetchAllJSFiles(item.path);
-          jsFiles = jsFiles.concat(nestedFiles);
-        } else if (item.type === 'file' && item.name.endsWith('.js')) {
-          jsFiles.push({
-            name: item.name,
-            path: item.path,
-            url: item.html_url
-          });
-        }
+    let files = [];
+    for (const item of data) {
+      if (item.type === 'file' && item.name.endsWith('.js')) {
+        files.push({name: item.name, path: item.path, download_url: item.download_url});
+      } else if (item.type === 'dir') {
+        const nestedFiles = await fetchAllFiles(item.path);
+        files = files.concat(nestedFiles);
       }
-    } catch (error) {
-      console.error('Error fetching files:', error);
-      throw error;
     }
-    return jsFiles;
+    return files;
   }
 
-  // Show the scripts list
-  async function showScripts() {
-    const container = document.getElementById('scriptsContent');
+  // Render the scripts list
+  async function loadScripts() {
+    const container = document.getElementById('scriptsContainer');
     try {
-      const files = await fetchAllJSFiles();
-      if(files.length === 0) {
-        container.innerHTML = '<p>No JavaScript files found in the repository.</p>';
+      const files = await fetchAllFiles();
+      container.innerHTML = '';
+      if (files.length === 0) {
+        container.textContent = 'No JavaScript files found in the repository.';
         return;
       }
-      // Sort files alphabetically
-      files.sort((a,b) => a.name.localeCompare(b.name));
-
       const ul = document.createElement('ul');
-      files.forEach(f => {
+      ul.className = 'file-list';
+      for (const file of files) {
         const li = document.createElement('li');
         const a = document.createElement('a');
-        a.href = f.url;
-        a.textContent = f.path;
+        a.href = file.download_url;
+        a.textContent = file.path;
         a.target = '_blank';
+        a.rel = 'noopener noreferrer';
         li.appendChild(a);
         ul.appendChild(li);
-      });
-      container.innerHTML = '';
+      }
       container.appendChild(ul);
-    } catch(e) {
-      container.innerHTML = '<p>Failed to load scripts. Check console for errors.</p>';
+    } catch (e) {
+      container.textContent = 'Failed to load scripts: ' + e.message;
+      console.error(e);
     }
   }
 
-  // Run on page load
-  window.onload = showScripts;
+  loadScripts();
 </script>
 
 </body>

@@ -1,0 +1,2 @@
+# Dinoscriptz
+Dinosaur scriptzzz loloolol

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dinoscriptz - Hub</title>
+  <style>
+    :root {
+      --primary: #1a73e8;
+      --bg: #0f0f0f;
+      --fg: #f1f1f1;
+      --accent: #333;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      animation: fadeIn 1s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--primary), #4285f4);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: white;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px #0006;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background: #181818;
+      border-bottom: 1px solid var(--accent);
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: #ccc;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.25s, color 0.25s;
+    }
+
+    nav button:hover,
+    nav button.active {
+      background: #222;
+      color: #fff;
+    }
+
+    section {
+      display: none;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+      animation: fadeIn 0.5s ease;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .script-list {
+      display: grid;
+      gap: 1rem;
+      margin-top: 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .script-list li {
+      background: #1e1e1e;
+      padding: 1rem;
+      border-radius: 8px;
+      list-style: none;
+      border: 1px solid var(--accent);
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .script-list li:hover {
+      background: #292929;
+      transform: scale(1.02);
+    }
+
+    .script-list a {
+      color: #4da6ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .instructions {
+      background: #1c1c1c;
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--accent);
+      line-height: 1.6;
+      box-shadow: 0 0 8px #0004;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 1.5rem;
+      background: var(--primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.2s ease;
+    }
+
+    .button:hover {
+      background: #1663c6;
+    }
+
+    code, kbd {
+      background: #222;
+      color: #8ab4f8;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+
+    @media (max-width: 600px) {
+      nav button {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+      }
+
+      .script-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>Dinoscriptz</header>
+
+  <nav>
+    <button class="active" data-tab="scripts">Script(z)</button>
+    <button data-tab="install">Install Our Script(z)</button>
+    <button onclick="location.href='https://github.com/Epicinver/Dinoscriptz'">GitHub</button>
+    <button onclick="location.href='https://github.com/Epicinver/Dinoscriptz/blob/main/credits.md'">Credit(z)</button>
+  </nav>
+
+  <section id="scripts" class="active">
+    <h2>📜 Available Script(z)</h2>
+    <ul class="script-list" id="scriptList">Loading scripts...</ul>
+  </section>
+
+  <section id="install">
+    <h2>🚀 How to Install</h2>
+    <div class="instructions">
+      <p>1. Open the <strong>Dinoscriptz</strong> GitHub repository.</p>
+      <p>2. Choose a script ending in <code>.js</code>.</p>
+      <p>3. Open the <code>chrome://dino</code> game in Chrome.</p>
+      <p>4. Press <kbd>F12</kbd> or <kbd>Ctrl+Shift+I</kbd> to open Developer Tools and go to the <strong>Console</strong> tab.</p>
+      <p>5. Paste the script and hit <kbd>Enter</kbd>.</p>
+      <a class="button" href="https://github.com/Epicinver/Dinoscriptz" target="_blank">🔗 Open GitHub Repo</a>
+    </div>
+  </section>
+
+  <script>
+    // Handle tab switching
+    document.querySelectorAll('nav button[data-tab]').forEach(button => {
+      button.addEventListener('click', () => {
+        document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+
+    // Fetch scripts from GitHub API
+    async function fetchScripts() {
+      const list = document.getElementById('scriptList');
+      try {
+        const res = await fetch('https://api.github.com/repos/Epicinver/Dinoscriptz/contents');
+        const files = await res.json();
+        const jsFiles = files.filter(file => file.name.endsWith('.js'));
+
+        list.innerHTML = '';
+
+        if (jsFiles.length === 0) {
+          list.innerHTML = '<li>No JavaScript files found in the repository.</li>';
+          return;
+        }
+
+        jsFiles.forEach(file => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <strong>${file.name}</strong><br>
+            <a href="${file.html_url}" target="_blank">View on GitHub</a>
+          `;
+          list.appendChild(li);
+        });
+      } catch (error) {
+        list.innerHTML = '<li>❌ Failed to fetch scripts. Please check your connection or try again later.</li>';
+      }
+    }
+
+    fetchScripts();
+  </script>
+</body>
+</html>

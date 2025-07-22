@@ -1,9 +1,11 @@
 # Dinoscriptz
-Dinosaur scriptzzz loloolol
+scriptzzz loloolol
 -
 
 # What are these?
 These are scripts i've made for the chrome://dino game on chromium-based browsers.
+I'm aiming to make more scripts for different games on here, kinda a cheat hub.
+plz dont send a cease and desist :)
 
 # How do i use the cheats?
 Click F12 and paste in the contents OR you can [minify it](https://www.toptal.com/developers/javascript-minifier) and turn it into a [bookmarklet](https://caiorss.github.io/bookmarklet-maker/).
